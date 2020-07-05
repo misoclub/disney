@@ -1,9 +1,31 @@
+const cheerio = require('cheerio-httpcli');
+
 count = 0;
 // 送信済みフラグ。
 bSended = false;
 // いいわけは一度でも編集するとデフォ値を使用しなくなる。
 iiwakeChange = false;
 timeChange = false;
+
+
+var client = require('cheerio-httpcli');
+ 
+// Googleで「node.js」について検索する。
+var word = 'node.js';
+ 
+client.fetch('http://www.google.com/search', { q: word }, function (err, $, res, body) {
+  // レスポンスヘッダを参照
+  console.log(res.headers);
+ 
+  // HTMLタイトルを表示
+  console.log($('title').text());
+ 
+  // リンク一覧を表示
+  $('a').each(function (idx) {
+    console.log($(this).attr('href'));
+  });
+});
+
 
 function getParam(name, url)
 {
@@ -321,21 +343,21 @@ function save(mailto, mailcc, mailbcc, yourname, name, iiwake, type, hour, minut
 }
 
 function initialize() {
-    // 今日のいい感じの日時を入れておく。
-    var nowdate = new Date();
-    // デフォルト今日の日付。
-    var day = dateToStr24HPad0DayOfWeek(nowdate, 'YYYY年MM月DD日(WW)');
-    $('#targetDate').val(day);
-    // 現在時刻をセット。11時台が一番多そうなので決め打ちにする。
-    // $('#mail-form [name=hour] option[value="' + nowdate.getHours() + '"]').prop('selected', true);
+    // // 今日のいい感じの日時を入れておく。
+    // var nowdate = new Date();
+    // // デフォルト今日の日付。
+    // var day = dateToStr24HPad0DayOfWeek(nowdate, 'YYYY年MM月DD日(WW)');
+    // $('#targetDate').val(day);
+    // // 現在時刻をセット。11時台が一番多そうなので決め打ちにする。
+    // // $('#mail-form [name=hour] option[value="' + nowdate.getHours() + '"]').prop('selected', true);
 
-    // 前回のデータ読み込み。
-    load();
+    // // 前回のデータ読み込み。
+    // load();
 
-    // 送信ボタン押せるか。
-    var enable = checkSendButton();
-    $('#submitbtn').prop('disabled', !enable);
-    enable ? $('#errortext').hide() : $('#errortext').show();
+    // // 送信ボタン押せるか。
+    // var enable = checkSendButton();
+    // $('#submitbtn').prop('disabled', !enable);
+    // enable ? $('#errortext').hide() : $('#errortext').show();
 }
 
 function OnChangeType()
@@ -726,3 +748,66 @@ $(function() {
 
     OnN();
 });
+
+
+
+
+
+
+async function getWaitingTime(name) {
+	console.log("getWaitingTime start");
+    const cheerioObject= await cheerio.fetch('http://tokyodisneyresort.info/smartPhone/realtime.php', {park: name, order: "wait"});
+    let replyMessage = "";
+    let lists = cheerioObject.$('li').text();
+
+    lists = lists.trim().replace(/\t/g, "").replace(/\n+/g, ",").split(",");
+    lists.forEach((list) => {
+	console.log(list);
+        if (list.indexOf("更新") !== -1){
+            replyMessage += list;
+        } else if (/FP|中|分|情報なし|案内/.test(list)){
+            replyMessage += "\n" + list;
+        } else {
+            replyMessage += "\n\n" + list;
+        }
+    });
+	console.log(replyMessage);
+    return replyMessage;
+}
+
+
+
+function sampleResolve(value) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(value * 2);
+        }, 2000);
+    })
+}
+
+/**
+ * sampleResolve()をawaitしているため、Promiseの結果が返されるまで処理が一時停止される
+ * 今回の場合、2秒後にresolve(10)が返ってきてその後の処理（return result + 5;）が再開される
+ * resultにはresolveされた10が格納されているため、result + 5 = 15がreturnされる
+ */
+async function sample() {
+    const result = await sampleResolve(5);
+    return result + 5;
+}
+
+sample().then(result => {
+    console.log(result); // => 15
+});
+
+
+console.log("いくよ");
+
+getWaitingTime("sea").then(result => {
+    alert(result);
+	console.log(result);
+});
+
+
+console.log("いったよ");
+
+
