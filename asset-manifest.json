@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/disney/static/css/main.5f361e03.chunk.css",
-    "main.js": "/disney/static/js/main.3291d225.chunk.js",
-    "main.js.map": "/disney/static/js/main.3291d225.chunk.js.map",
+    "main.js": "/disney/static/js/main.ad510a48.chunk.js",
+    "main.js.map": "/disney/static/js/main.ad510a48.chunk.js.map",
     "runtime-main.js": "/disney/static/js/runtime-main.7b4aa3b4.js",
     "runtime-main.js.map": "/disney/static/js/runtime-main.7b4aa3b4.js.map",
-    "static/js/2.8233a274.chunk.js": "/disney/static/js/2.8233a274.chunk.js",
-    "static/js/2.8233a274.chunk.js.map": "/disney/static/js/2.8233a274.chunk.js.map",
+    "static/js/2.898b08db.chunk.js": "/disney/static/js/2.898b08db.chunk.js",
+    "static/js/2.898b08db.chunk.js.map": "/disney/static/js/2.898b08db.chunk.js.map",
     "index.html": "/disney/index.html",
-    "precache-manifest.8d9b47b314115b84a65f2d8fb8557643.js": "/disney/precache-manifest.8d9b47b314115b84a65f2d8fb8557643.js",
+    "precache-manifest.1a2497dd01d8a868aaf9336b5a879fcd.js": "/disney/precache-manifest.1a2497dd01d8a868aaf9336b5a879fcd.js",
     "service-worker.js": "/disney/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/disney/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.8233a274.chunk.js.LICENSE.txt": "/disney/static/js/2.8233a274.chunk.js.LICENSE.txt",
+    "static/js/2.898b08db.chunk.js.LICENSE.txt": "/disney/static/js/2.898b08db.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/disney/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.7b4aa3b4.js",
-    "static/js/2.8233a274.chunk.js",
+    "static/js/2.898b08db.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.3291d225.chunk.js"
+    "static/js/main.ad510a48.chunk.js"
   ]
 }
